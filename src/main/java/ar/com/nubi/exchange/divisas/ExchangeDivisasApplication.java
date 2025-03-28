@@ -1,13 +1,13 @@
-package ar.com.nubi.exchange;
+package ar.com.nubi.exchange.divisas;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ExchangeApplication {
+public class ExchangeDivisasApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ExchangeApplication.class, args);
+		SpringApplication.run(ExchangeDivisasApplication.class, args);
 	}
 
 }

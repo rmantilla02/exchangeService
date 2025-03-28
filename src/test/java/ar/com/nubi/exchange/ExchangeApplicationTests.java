@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.Assert;
 
-import ar.com.nubi.exchange.api.ExchangeDivisaApi;
-import ar.com.nubi.exchange.api.impl.ExchangeDivisaApiImpl;
+import ar.com.nubi.exchange.divisas.external.api.ExternalExchangeApi;
+import ar.com.nubi.exchange.divisas.external.api.ExternalExchangeApiImpl;
 
 //@SpringBootTest
 class ExchangeApplicationTests {
@@ -17,7 +17,7 @@ class ExchangeApplicationTests {
 	void contextLoads() {
 	}
 
-	private final ExchangeDivisaApi exchangeDivisaApi = new ExchangeDivisaApiImpl();
+	private final ExternalExchangeApi exchangeDivisaApi = new ExternalExchangeApiImpl();
 
 	@Test
 	void testGetRateOk() {
@@ -34,7 +34,6 @@ class ExchangeApplicationTests {
 		});
 
 		assertEquals(Exception.class, exception.getClass());
-
 	}
 
 }

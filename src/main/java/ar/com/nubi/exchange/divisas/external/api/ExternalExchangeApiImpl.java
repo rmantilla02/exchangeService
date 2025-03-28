@@ -1,4 +1,4 @@
-package ar.com.nubi.exchange.api.impl;
+package ar.com.nubi.exchange.divisas.external.api;
 
 import java.io.IOException;
 
@@ -11,11 +11,13 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.stereotype.Component;
 
-import ar.com.nubi.exchange.api.ExchangeDivisaApi;
+import ar.com.nubi.exchange.divisas.exception.BadRequestException;
+import ar.com.nubi.exchange.divisas.exception.ExternalApiException;
 
-
-public class ExchangeDivisaApiImpl implements ExchangeDivisaApi {
+@Component
+public class ExternalExchangeApiImpl implements ExternalExchangeApi {
 
 	public static final String ACCESS_KEY = "fe1d61ef46d74b03c1f9ef04738ad5b9";
 	public static final String BASE_URL = "http://api.exchangerate.host/";
@@ -35,23 +37,17 @@ public class ExchangeDivisaApiImpl implements ExchangeDivisaApi {
 			// the following line converts the JSON Response to an equivalent Java Object
 			JSONObject exchangeRates = new JSONObject(EntityUtils.toString(entity));
 
-			// Parsed JSON Objects are accessed according to the JSON resonse's hierarchy,
-			// output strings are built
 			result = exchangeRates.getJSONObject("quotes").getDouble(divisaBase + divisaDestino);
-
 			response.close();
+
 			return result;
 		} catch (ClientProtocolException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-		return null;
+			throw new BadRequestException("Error en la solicitud al servicio externo: " + e.getMessage(), e);
+		} catch (IOException e) {
+			throw new ExternalApiException("Error de comunicación con el servicio externo: " + e.getMessage(), e);
+		} catch (JSONException e) {
+			throw new ExternalApiException("Error al procesar los datos. " + e.getMessage(), e);
+		}
 	}
 
 }

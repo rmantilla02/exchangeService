@@ -1,6 +1,6 @@
-package ar.com.nubi.exchange.api;
+package ar.com.nubi.exchange.divisas.external.api;
 
-public interface ExchangeDivisaApi {
+public interface ExternalExchangeApi {
 	/**
 	 * 
 	 * @param divisaBase
