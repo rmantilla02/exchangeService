@@ -1,0 +1,42 @@
+{
+	"info": {
+		"_postman_id": "7126c526-70dc-4054-8e59-12a9bf6e0043",
+		"name": "exchangeService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23560763"
+	},
+	"item": [
+		{
+			"name": "exchange-divisa",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"cantidad\": 12,\r\n\"divisaBase\": \"USD\",\r\n\"divisaDestino\": \"ARS\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/exchange-divisa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"exchange-divisa"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
