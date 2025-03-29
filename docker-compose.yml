@@ -1,0 +1,12 @@
+services:
+  exchange-divisas:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: exchange-divisas-ms
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 700m

@@ -8,11 +8,11 @@ import ar.com.nubi.exchange.divisas.external.api.ExternalExchangeApi;
 import ar.com.nubi.exchange.divisas.service.ExchangeDivisasService;
 
 @Service
-public class ExchangeDivisasServiceImpl implements ExchangeDivisasService{
-	
+public class ExchangeDivisasServiceImpl implements ExchangeDivisasService {
+
 	private final Logger log = LoggerFactory.getLogger(ExchangeDivisasServiceImpl.class);
 
-	private final ExternalExchangeApi externalExchangeApi;
+	private ExternalExchangeApi externalExchangeApi;
 
 	public ExchangeDivisasServiceImpl(ExternalExchangeApi externalExchangeApi) {
 		this.externalExchangeApi = externalExchangeApi;
@@ -27,7 +27,7 @@ public class ExchangeDivisasServiceImpl implements ExchangeDivisasService{
 	 */
 	@Override
 	public Double obtenerConversion(Double cant, String divBase, String divDestivo) {
-		log.debug("obteniendo conversión: {}",cant, divBase, divDestivo);
+		log.debug("obteniendo conversión: {}", cant, divBase, divDestivo);
 		Double ratio = externalExchangeApi.getRate(divBase, divDestivo);
 		return cant * ratio;
 	}

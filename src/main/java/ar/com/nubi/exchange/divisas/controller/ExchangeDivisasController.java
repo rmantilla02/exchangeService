@@ -19,9 +19,9 @@ import jakarta.validation.Valid;
 @RequestMapping(path = "/api", produces = { MediaType.APPLICATION_JSON_VALUE })
 @Validated
 public class ExchangeDivisasController {
-	
+
 	private final Logger log = LoggerFactory.getLogger(ExchangeDivisasController.class);
-	private final ExchangeDivisasService exchangeDivisasService;
+	private ExchangeDivisasService exchangeDivisasService;
 
 	public ExchangeDivisasController(ExchangeDivisasService exchangeDivisasService) {
 		this.exchangeDivisasService = exchangeDivisasService;

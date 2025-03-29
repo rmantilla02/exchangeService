@@ -11,17 +11,24 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import ar.com.nubi.exchange.divisas.exception.BadRequestException;
 import ar.com.nubi.exchange.divisas.exception.ExternalApiException;
+import ar.com.nubi.exchange.divisas.exception.ResouceNotFoundException;
 
 @Component
 public class ExternalExchangeApiImpl implements ExternalExchangeApi {
 
-	public static final String ACCESS_KEY = "fe1d61ef46d74b03c1f9ef04738ad5b9";
-	public static final String BASE_URL = "http://api.exchangerate.host/";
-	public static final String ENDPOINT = "live";
+	@Value("${exchange.api.access.key}")
+	private String ACCESS_KEY;
+
+	@Value("${exchange.api.base.url}")
+	private String BASE_URL;
+
+	@Value("${exchange.api.endpoint}")
+	private String ENDPOINT;
 
 	static CloseableHttpClient httpClient = HttpClients.createDefault();
 
@@ -44,7 +51,7 @@ public class ExternalExchangeApiImpl implements ExternalExchangeApi {
 		} catch (ClientProtocolException e) {
 			throw new BadRequestException("Error en la solicitud al servicio externo: " + e.getMessage(), e);
 		} catch (IOException e) {
-			throw new ExternalApiException("Error de comunicación con el servicio externo: " + e.getMessage(), e);
+			throw new ResouceNotFoundException("Error de comunicación con el servicio externo: " + e.getMessage(), e);
 		} catch (JSONException e) {
 			throw new ExternalApiException("Error al procesar los datos. " + e.getMessage(), e);
 		}
