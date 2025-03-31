@@ -1,0 +1,7 @@
+exchange:
+  api:
+    access:
+      key: "fe1d61ef46d74b03c1f9ef04738ad5b9"
+    base:
+      url: "http://api.exchangerate.host/"
+    endpoint: "live"

@@ -12,7 +12,7 @@ import lombok.Data;
 public class RequestExchangeDivisaDto {
 
 	@Schema(description = "Cantidad a convertir", example = "14")
-	@Positive(message = "La cantidad no puede ser un valor negativo")
+	@Positive(message = "La cantidad no puede ser 0 o negativo")
 	Double cantidad;
 
 	@Schema(description = "Divisa base", example = "USD")

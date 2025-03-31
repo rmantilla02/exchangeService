@@ -4,20 +4,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.Assert;
 
+import ar.com.nubi.exchange.divisas.ExchangeDivisasApplication;
+import ar.com.nubi.exchange.divisas.exception.ExternalApiException;
 import ar.com.nubi.exchange.divisas.external.api.ExternalExchangeApi;
-import ar.com.nubi.exchange.divisas.external.api.ExternalExchangeApiImpl;
 
-//@SpringBootTest
-class ExchangeApplicationTests {
+@SpringBootTest(classes = ExchangeDivisasApplication.class)
+class ExchangeDivisasApplicationTests {
 
 	@Test
 	void contextLoads() {
 	}
 
-	private final ExternalExchangeApi exchangeDivisaApi = new ExternalExchangeApiImpl();
+	@Autowired
+	private ExternalExchangeApi exchangeDivisaApi;
 
 	@Test
 	void testGetRateOk() {
@@ -29,11 +32,11 @@ class ExchangeApplicationTests {
 
 	@Test
 	void testGetRateError() {
-		Exception exception = assertThrows(Exception.class, () -> {
+		ExternalApiException exception = assertThrows(ExternalApiException.class, () -> {
 			exchangeDivisaApi.getRate("UD", "GBP");
 		});
 
-		assertEquals(Exception.class, exception.getClass());
+		assertEquals(ExternalApiException.class, exception.getClass());
 	}
 
 }
