@@ -13,6 +13,10 @@ Para obtener la tasa de cambio consume la API pública https://exchangerate.host
 
       docker-compose up
 
+## Documentación:
+
+    http://localhost:8080/swagger-ui/index.html
+
 ## Pruebas:
 - Con Postman usar el archivo exchangeService.postman_collection
 
