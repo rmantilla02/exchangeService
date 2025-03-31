@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7126c526-70dc-4054-8e59-12a9bf6e0043",
+		"_postman_id": "6eaba577-1370-4fb6-a4ed-bf634b3639d7",
 		"name": "exchangeService",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "23560763"
@@ -17,6 +17,41 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\"cantidad\": 12,\r\n\"divisaBase\": \"USD\",\r\n\"divisaDestino\": \"ARS\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/exchange-divisa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"exchange-divisa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "exchange-divisa-validarParametros",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"cantidad\": -2,\r\n\"divisaBase\": \"UD\",\r\n\"divisaDestino\": \"\"}",
 					"options": {
 						"raw": {
 							"language": "json"
